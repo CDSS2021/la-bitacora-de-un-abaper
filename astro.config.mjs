@@ -28,7 +28,7 @@ import refreshContentOnChange from './src/integrations/refresh-content-on-change
 import { fileURLToPath } from 'node:url';
 
 // Deployment platform configuration
-const DEPLOYMENT_PLATFORM = process.env.DEPLOYMENT_PLATFORM || 'netlify';
+const DEPLOYMENT_PLATFORM = process.env.DEPLOYMENT_PLATFORM || siteConfig.deployment.platform;
 
 export default defineConfig({
   site: siteConfig.site,

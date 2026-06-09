@@ -20,13 +20,22 @@ pnpm build
 pnpm preview
 ```
 
-El servidor local usa el puerto configurado por la plantilla, normalmente `http://localhost:5000`.
+El servidor local usa el puerto configurado por la plantilla, normalmente `http://localhost:5000`. Si ese puerto esta ocupado, la plantilla puede usar `http://localhost:5001`.
 
 ## Crear un nuevo articulo
 
-Los posts viven en `src/content/posts`.
+Los posts viven en `src/content/posts` y deben crearse con estructura folder-based para que Obsidian pueda guardar imagenes y recursos junto al articulo.
 
 Ejemplo:
+
+```text
+src/content/posts/
++-- buenas-practicas-abap-evitar-select-dentro-de-loop/
+    +-- index.md
+    +-- diagrama.png
+```
+
+Frontmatter recomendado para `index.md`:
 
 ```markdown
 ---
@@ -51,16 +60,19 @@ Usa `draft: true` para ocultar borradores en produccion.
 
 Abre la carpeta `src/content` como vault de Obsidian.
 
-- Crea nuevos posts en `src/content/posts`.
-- Crea paginas estaticas en `src/content/pages`.
+- Crea nuevos posts en `posts/<slug-del-articulo>/index.md`.
+- Guarda imagenes, capturas, diagramas y adjuntos en la misma carpeta del post.
+- Crea paginas estaticas en `pages`.
 - Usa tags compatibles con el frontmatter mostrado arriba.
 - Puedes usar wikilinks, embeds, Mermaid y otras capacidades de Astro Modular si la plantilla las soporta.
+- Astro Composer esta configurado para crear posts en modo carpeta usando `index.md`.
+- Image Manager esta configurado para colocar adjuntos en la misma carpeta de la nota.
 
 Flujo sugerido:
 
 ```bash
 git status
-git add src/content/posts
+git add src/content
 git commit -m "Add new ABAP post"
 git push
 ```

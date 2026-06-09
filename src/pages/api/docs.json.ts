@@ -1,8 +1,18 @@
 import { getCollection } from "astro:content";
 import { shouldShowContent } from "@/utils/markdown";
+import { siteConfig } from "@/config";
 
 export async function GET() {
   try {
+    if (!siteConfig.optionalContentTypes.docs) {
+      return new Response(JSON.stringify([]), {
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
+        },
+      });
+    }
+
     const docs = await getCollection("docs");
     const isDev = import.meta.env.DEV;
     const visibleDocs = docs
