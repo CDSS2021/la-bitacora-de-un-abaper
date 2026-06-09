@@ -39,11 +39,18 @@ import Icon from './Icon.astro';
   function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
 
-    if (themeToggle) {
+    if (themeToggle && themeToggle.getAttribute('data-theme-toggle-bound') !== 'true') {
+      themeToggle.setAttribute('data-theme-toggle-bound', 'true');
       themeToggle.addEventListener('click', toggleTheme);
     }
   }
 
-  // Initialize on load
-  document.addEventListener('DOMContentLoaded', initThemeToggle);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle, { once: true });
+  } else {
+    initThemeToggle();
+  }
+
+  document.addEventListener('astro:page-load', initThemeToggle);
+  document.addEventListener('swup:contentReplaced', initThemeToggle);
 </script>
