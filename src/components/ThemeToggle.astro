@@ -29,7 +29,7 @@ import Icon from './Icon.astro';
 
     // Dispatch theme change event
     window.dispatchEvent(new CustomEvent('themechange', {
-      detail: { theme: newTheme }
+      detail: { mode: newTheme }
     }));
   }
 

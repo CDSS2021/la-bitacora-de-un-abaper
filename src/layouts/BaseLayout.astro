@@ -41,6 +41,7 @@ export interface Props {
 
 const { seoData, bodyClass = '' } = Astro.props;
 const defaultOgImageUrl = `${siteConfig.site}${withBase('/open-graph.png')}`;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 // Determine scrollbar class based on configuration
 const scrollbarClass = siteConfig.hideScrollBar ? '' : 'show-scrollbars';
@@ -74,7 +75,7 @@ for (const [path, mod] of Object.entries(customThemeModules)) {
 ---
 
 <!DOCTYPE html>
-<html lang={siteConfig.language} class={`scrollbar-hide ${scrollbarClass}`} data-theme-config={siteConfig.theme} data-custom-theme-file={siteConfig.customThemeFile} data-custom-themes={JSON.stringify(customThemes)} data-available-themes={JSON.stringify(siteConfig.availableThemes)} data-command-palette-enabled={siteConfig.commandPalette.enabled} data-command-palette-change-theme={siteConfig.commandPalette.quickActions.changeTheme} data-feature-button={siteConfig.featureButton} data-favicon-theme-adaptive={siteConfig.faviconThemeAdaptive}>
+<html lang={siteConfig.language} class={`scrollbar-hide ${scrollbarClass}`} data-base-path={basePath} data-theme-config={siteConfig.theme} data-custom-theme-file={siteConfig.customThemeFile} data-custom-themes={JSON.stringify(customThemes)} data-available-themes={JSON.stringify(siteConfig.availableThemes)} data-command-palette-enabled={siteConfig.commandPalette.enabled} data-command-palette-change-theme={siteConfig.commandPalette.quickActions.changeTheme} data-feature-button={siteConfig.featureButton} data-favicon-theme-adaptive={siteConfig.faviconThemeAdaptive}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -410,7 +411,7 @@ for (const [path, mod] of Object.entries(customThemeModules)) {
     function setFavicon() {
       const faviconThemeAdaptive = window.siteConfig?.faviconThemeAdaptive ?? true;
       
-      const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+      const baseUrl = document.documentElement.getAttribute('data-base-path') || '';
       let faviconUrl;
       
       if (faviconThemeAdaptive) {
@@ -1137,16 +1138,17 @@ for (const [path, mod] of Object.entries(customThemeModules)) {
     // Simple favicon function - follows system theme only
     function setFavicon() {
       const faviconThemeAdaptive = window.siteConfig?.faviconThemeAdaptive ?? true;
+      const baseUrl = document.documentElement.getAttribute('data-base-path') || '';
       
       let faviconUrl;
       
       if (faviconThemeAdaptive) {
         // Use theme-based favicons based on browser preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        faviconUrl = prefersDark ? '/favicon-dark.png' : '/favicon-light.png';
+        faviconUrl = prefersDark ? `${baseUrl}/favicon-dark.png` : `${baseUrl}/favicon-light.png`;
       } else {
         // Always use static favicon
-        faviconUrl = '/favicon.png';
+        faviconUrl = `${baseUrl}/favicon.png`;
       }
 
       // Remove existing favicon
