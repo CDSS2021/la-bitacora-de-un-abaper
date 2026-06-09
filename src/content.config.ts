@@ -8,6 +8,8 @@ const postsCollection = defineCollection({
     title: z.string().default('Untitled Post'),
     description: z.string().nullable().optional().default('No description provided'),
     date: z.coerce.date().default(() => new Date()),
+    updatedDate: z.coerce.date().optional(),
+    category: z.string().nullable().optional(),
     tags: z.array(z.string()).nullable().optional(),
     draft: z.boolean().optional(),
     image: z.any().nullable().optional().transform((val) => {

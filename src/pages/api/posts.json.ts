@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { shouldShowPost } from "@/utils/markdown";
+import { withBase } from "@/utils/base";
 
 export const GET: APIRoute = async () => {
   try {
@@ -18,7 +19,7 @@ export const GET: APIRoute = async () => {
       id: post.id,
       title: post.data.title,
       description: post.data.description,
-      url: `/posts/${post.id}`,
+      url: withBase(`/posts/${post.id}`),
       type: "post" as const,
       date: post.data.date,
       tags: post.data.tags || [],
