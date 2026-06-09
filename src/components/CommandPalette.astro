@@ -1,5 +1,6 @@
 ---
 import { siteConfig, getThemeDisplayName } from '../config';
+import { withBase } from '@/utils/base';
 import Icon from './Icon.astro';
 ---
 
@@ -134,7 +135,7 @@ import Icon from './Icon.astro';
                       {/* Parent item */}
                       {hasUrl ? (
                         <a 
-                          href={page.url}
+                          href={withBase(page.url)}
                           class="w-full flex items-center space-x-3 px-3 py-2 hover:bg-primary-50 dark:hover:bg-primary-800 rounded-lg transition-colors group"
                           target={page.url.startsWith('http') ? '_blank' : undefined}
                         >
@@ -153,7 +154,7 @@ import Icon from './Icon.astro';
                       {/* Children items (indented) */}
                       {page.children.map(child => (
                         <a 
-                          href={child.url || '#'}
+                          href={withBase(child.url || '#')}
                           class="w-full flex items-center space-x-3 px-3 py-2 pl-8 hover:bg-primary-50 dark:hover:bg-primary-800 rounded-lg transition-colors group"
                           target={child.url?.startsWith('http') ? '_blank' : undefined}
                         >
@@ -170,7 +171,7 @@ import Icon from './Icon.astro';
                   // Regular navigation item without children
                   return (
                     <a 
-                      href={page.url || '#'}
+                      href={withBase(page.url || '#')}
                       class="w-full flex items-center space-x-3 px-3 py-2 hover:bg-primary-50 dark:hover:bg-primary-800 rounded-lg transition-colors group"
                       target={page.url?.startsWith('http') ? '_blank' : undefined}
                     >
@@ -401,7 +402,7 @@ import Icon from './Icon.astro';
         // Load posts if enabled in search config
         if (searchConfig.posts) {
           promises.push(
-            fetch('/api/posts.json').then(response => 
+            fetch(`${import.meta.env.BASE_URL}api/posts.json`).then(response => 
               response.ok ? response.json() : []
             )
           );
@@ -412,7 +413,7 @@ import Icon from './Icon.astro';
         // Load pages if enabled in search config
         if (searchConfig.pages) {
           promises.push(
-            fetch('/api/pages.json').then(response => {
+            fetch(`${import.meta.env.BASE_URL}api/pages.json`).then(response => {
               return response.ok ? response.json() : [];
             }).catch(error => {
               return [];
@@ -425,7 +426,7 @@ import Icon from './Icon.astro';
         // Load projects if enabled in search config AND projects content type is enabled
         if (searchConfig.projects && optionalContentTypes.projects) {
           promises.push(
-            fetch('/api/projects.json').then(response => 
+            fetch(`${import.meta.env.BASE_URL}api/projects.json`).then(response => 
               response.ok ? response.json() : []
             )
           );
@@ -436,7 +437,7 @@ import Icon from './Icon.astro';
         // Load documentation if enabled in search config AND docs content type is enabled
         if (searchConfig.docs && optionalContentTypes.docs) {
           promises.push(
-            fetch('/api/docs.json').then(response => {
+            fetch(`${import.meta.env.BASE_URL}api/docs.json`).then(response => {
               return response.ok ? response.json() : [];
             }).catch(error => {
               return [];

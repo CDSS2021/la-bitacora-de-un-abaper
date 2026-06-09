@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { shouldShowContent } from "@/utils/markdown";
+import { withBase } from "@/utils/base";
 
 export const GET: APIRoute = async () => {
   try {
@@ -14,7 +15,7 @@ export const GET: APIRoute = async () => {
       id: page.id,
       title: page.data.title,
       description: page.data.description || "",
-      url: `/${page.id}`,
+      url: withBase(`/${page.id}`),
       type: "page" as const,
       lastModified: page.data.lastModified?.toISOString(),
     }));

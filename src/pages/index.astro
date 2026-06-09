@@ -5,6 +5,7 @@ import { siteConfig } from '@/config';
 import { generateHomeSEO } from '@/utils/seo';
 import { shouldShowPost, shouldShowContent, sortPostsByDate, processPost } from '@/utils/markdown';
 import { hasProjectCategories } from '@/utils/categories';
+import { withBase } from '@/utils/base';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PostCard from '@/components/PostCard.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
@@ -139,6 +140,7 @@ const onlyBlurbContent = contentTypesCount === 0 && siteConfig.homeOptions.blurb
 // Generate SEO data for homepage
 const seoData = generateHomeSEO(Astro.url.href);
 if (siteConfig.homepageTitle) seoData.title = siteConfig.homepageTitle;
+const siteUrl = `${siteConfig.site}${import.meta.env.BASE_URL.replace(/\/$/, '')}`;
 
 // Structured data for the website
 const structuredData = {
@@ -146,7 +148,7 @@ const structuredData = {
   '@type': 'Blog',
   name: siteConfig.title,
   description: siteConfig.description,
-  url: siteConfig.site,
+  url: siteUrl,
   author: {
     '@type': 'Person',
     name: siteConfig.author
@@ -154,7 +156,7 @@ const structuredData = {
   publisher: {
     '@type': 'Organization',
     name: siteConfig.title,
-    url: siteConfig.site
+    url: siteUrl
   }
 };
 ---
@@ -227,7 +229,7 @@ const structuredData = {
                     Recent Posts
                   </h2>
                   <a
-                    href="/posts"
+                    href={withBase('/posts')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all posts →
@@ -244,7 +246,7 @@ const structuredData = {
               {useSpecialTreatment && (
                 <div class="mt-8 text-center">
                   <a
-                    href="/posts"
+                    href={withBase('/posts')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all posts →
@@ -263,7 +265,7 @@ const structuredData = {
                     Projects
                   </h2>
                   <a
-                    href="/projects"
+                    href={withBase('/projects')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all projects →
@@ -280,7 +282,7 @@ const structuredData = {
               {useSpecialTreatment && (
                 <div class="mt-8 text-center">
                   <a
-                    href="/projects"
+                    href={withBase('/projects')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all projects →
@@ -299,7 +301,7 @@ const structuredData = {
                     Documentation
                   </h2>
                   <a
-                    href="/docs"
+                    href={withBase('/docs')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all docs →
@@ -316,7 +318,7 @@ const structuredData = {
               {useSpecialTreatment && (
                 <div class="mt-8 text-center">
                   <a
-                    href="/docs"
+                    href={withBase('/docs')}
                     class="text-primary-600 dark:text-primary-300 hover:text-highlight-600 dark:hover:text-highlight-400 font-medium transition-colors"
                   >
                     View all docs →
