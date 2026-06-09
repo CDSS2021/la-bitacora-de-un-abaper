@@ -185,23 +185,23 @@ export const siteConfig: SiteConfig = {
   // [CONFIG:SITE_URL]
   site: "https://cdss2021.github.io",
   // [CONFIG:SITE_TITLE]
-  title: "La Bitacora de un ABAPer",
+  title: "La Bitácora de un ABAPer",
   // [CONFIG:HOMEPAGE_TITLE]
   homepageTitle: "",
   // [CONFIG:SITE_DESCRIPTION]
   description: "Experiencias reales con ABAP, RAP, SAP y desarrollo empresarial.",
   // [CONFIG:SITE_AUTHOR]
-  author: "Cesar David Sanchez Saldana",
+  author: "César David Sánchez Saldaña",
   // [CONFIG:SITE_LANGUAGE]
   language: "es",
   // [CONFIG:FAVICON_THEME_ADAPTIVE]
   faviconThemeAdaptive: true, // If true, favicon switches between favicon-dark.png and favicon-light.png based on browser's system theme preference. If false, always uses favicon.png
   // [CONFIG:DEFAULT_OG_IMAGE_ALT]
-  defaultOgImageAlt: "La Bitacora de un ABAPer.", // Alt text for the default Open Graph image, public/open-graph.png
+  defaultOgImageAlt: "La Bitácora de un ABAPer.", // Alt text for the default Open Graph image, public/open-graph.png
 
   // Global Settings
   // [CONFIG:THEME]
-  theme: "oxygen", // Available themes: "minimal" | "oxygen" | "atom" | "ayu" | "catppuccin" | "charcoal" | "dracula" | "everforest" | "flexoki" | "gruvbox" | "macos" | "nord" | "obsidian" | "rose-pine" | "sky" | "solarized" | "things" | "custom"
+  theme: "atom", // Available themes: "minimal" | "oxygen" | "atom" | "ayu" | "catppuccin" | "charcoal" | "dracula" | "everforest" | "flexoki" | "gruvbox" | "macos" | "nord" | "obsidian" | "rose-pine" | "sky" | "solarized" | "things" | "custom"
   // [CONFIG:CUSTOM_THEME_FILE]
   customThemeFile: "custom", // Only used if theme is set to "custom" above. Filename in src/themes/custom/ (without .ts extension)
   // [CONFIG:AVAILABLE_THEMES]
@@ -234,7 +234,7 @@ export const siteConfig: SiteConfig = {
     // [CONFIG:FOOTER_ENABLED]
     enabled: true,
     // [CONFIG:FOOTER_CONTENT]
-    content: `© 2026 {author}. Blog tecnico sobre ABAP, RAP, SAP y desarrollo empresarial.`,
+    content: `© 2026 {author}. Blog técnico sobre ABAP, RAP, SAP y desarrollo empresarial.`,
     // [CONFIG:FOOTER_SHOW_SOCIAL_ICONS]
     showSocialIconsInFooter: true,
   },
@@ -256,7 +256,7 @@ export const siteConfig: SiteConfig = {
     // [CONFIG:COMMAND_PALETTE_SHORTCUT]
     shortcut: "ctrl+K",
     // [CONFIG:COMMAND_PALETTE_PLACEHOLDER]
-    placeholder: "Buscar articulos",
+    placeholder: "Buscar artículos",
     search: {
       // [CONFIG:COMMAND_PALETTE_SEARCH_POSTS]
       posts: true,
@@ -316,10 +316,9 @@ export const siteConfig: SiteConfig = {
     // [CONFIG:NAVIGATION_PAGES]
     pages: [
       { title: "Inicio", url: "/" },
-      { title: "Articulos", url: "/posts/" },
-      { title: "Tags", url: "/posts/" },
-      { title: "Sobre mi", url: "/about/" },
+      { title: "Artículos", url: "/posts/" },
       { title: "Recursos", url: "/recursos/" },
+      { title: "Sobre mí", url: "/about/" },
       { title: "GitHub", url: "https://github.com/CDSS2021/la-bitacora-de-un-abaper" }
     ],
     // [CONFIG:NAVIGATION_SOCIAL]
@@ -348,7 +347,7 @@ export const siteConfig: SiteConfig = {
       // [CONFIG:HOME_OPTIONS_FEATURED_POST_TYPE]
       type: "latest", // "latest" or "featured"
       // [CONFIG:HOME_OPTIONS_FEATURED_POST_SLUG]
-      slug: "getting-started", // Slug of post after '/posts/' to be featured (e.g. "post-title"). Only used when type is "featured"
+      slug: "bienvenido-a-la-bitacora-de-un-abaper", // Slug of post after '/posts/' to be featured (e.g. "post-title"). Only used when type is "featured"
     },
     recentPosts: {
       // [CONFIG:HOME_OPTIONS_RECENT_POSTS_ENABLED]

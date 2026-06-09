@@ -16,7 +16,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const isDev = import.meta.env.DEV;
   const visiblePages = pages.filter(page => {
     // Filter out special pages that are handled by dedicated routes
-    const specialPageSlugs = ['home', '404'];
+    const specialPageSlugs = ['home', '404', 'posts', 'docs', 'projects'];
     if (specialPageSlugs.includes(page.id)) {
       return false;
     }
@@ -34,8 +34,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // Special pages serve as fallback content when features are disabled
   const specialPaths = specialPages
     .filter(page => {
-      // Always exclude home and 404
-      if (['home', '404'].includes(page.id)) {
+      // Always exclude special pages handled by dedicated routes or disabled sections.
+      if (['home', '404', 'posts', 'docs', 'projects'].includes(page.id)) {
         return false;
       }
 

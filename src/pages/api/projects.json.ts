@@ -1,7 +1,17 @@
 import { getCollection } from "astro:content";
 import { shouldShowContent } from "@/utils/markdown";
+import { siteConfig } from "@/config";
 
 export async function GET() {
+  if (!siteConfig.optionalContentTypes.projects) {
+    return new Response(JSON.stringify([]), {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
+  }
+
   const isDev = import.meta.env.DEV;
   const projects = await getCollection("projects");
 

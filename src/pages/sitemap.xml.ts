@@ -26,8 +26,12 @@ export const GET: APIRoute = async () => {
   // Get all content collections
   const posts = await getCollection("posts");
   const pages = await getCollection("pages");
-  const projects = await getCollection("projects");
-  const docs = await getCollection("docs");
+  const projects = siteConfig.optionalContentTypes.projects
+    ? await getCollection("projects")
+    : [];
+  const docs = siteConfig.optionalContentTypes.docs
+    ? await getCollection("docs")
+    : [];
 
   // Filter posts based on environment (in dev, show all including drafts)
   const isDev = import.meta.env.DEV;
